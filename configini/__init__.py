@@ -1,6 +1,6 @@
 import configparser
 import os
-import re
+import json
 
 
 __config = configparser.ConfigParser()
@@ -27,7 +27,7 @@ def get(chapter, key, default=None, data_type=str, environment_var=None):
                    default
 
         # If value is None just immediately return the default.
-        if value is None:
+        if value is None and data_type != bool:
             return default
 
         # Else if value contains a dot, and needs to be cast as an integer.
@@ -37,8 +37,12 @@ def get(chapter, key, default=None, data_type=str, environment_var=None):
 
         # Else if value is 0 or false and needs to be cast to a boolean.
         # then just immediately return False
-        elif data_type == bool and value in ('0', 'false'):
+        elif data_type == bool and value in ('0', 'false', None):
             return False
+
+        # Else if value is list then use the json to cast the string into a list.
+        elif data_type in (list, dict):
+            return json.loads(value)
 
         # Cast value to right data type.
         return data_type(value)

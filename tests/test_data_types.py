@@ -119,23 +119,53 @@ class TestBool(unittest.TestCase):
             bool_with_text = configini.get('bool', 'text', data_type=bool)
             bool_with_0 = configini.get('bool', '0', data_type=bool)
             bool_with_false = configini.get('bool', 'false', data_type=bool)
+            bool_none = configini.get('none', 'none', data_type=bool)
 
         cls.config = Config
 
     def test_bool_with_1(self):
-        self.assertTrue(self.config.bool_with_1)
+        self.assertEqual(self.config.bool_with_1, True)
 
     def test_bool_with_true(self):
-        self.assertTrue(self.config.bool_with_true)
+        self.assertEqual(self.config.bool_with_true, True)
 
     def test_bool_with_text(self):
-        self.assertTrue(self.config.bool_with_text)
+        self.assertEqual(self.config.bool_with_text, True)
 
     def test_bool_with_0(self):
-        self.assertFalse(self.config.bool_with_0)
+        self.assertEqual(self.config.bool_with_0, False)
 
     def test_bool_with_false(self):
-        self.assertFalse(self.config.bool_with_false)
+        self.assertEqual(self.config.bool_with_false, False)
+
+    def test_bool_none(self):
+        self.assertEqual(self.config.bool_none, False)
+
+
+class TestList(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        configini.read('config_data_types.ini')
+
+        class Config:
+            list_text = configini.get('list', 'text', data_type=list)
+            list_number = configini.get('list', 'number', data_type=list)
+            list_mixed = configini.get('list', 'mixed', data_type=list)
+            list_empty = configini.get('list', 'empty', data_type=list)
+
+        cls.config = Config
+
+    def test_list_text(self):
+        self.assertEqual(type(self.config.list_text), list)
+
+    def test_list_number(self):
+        self.assertEqual(type(self.config.list_number), list)
+
+    def test_list_mixed(self):
+        self.assertEqual(type(self.config.list_mixed), list)
+
+    def test_list_empty(self):
+        self.assertEqual(type(self.config.list_empty), list)
 
 
 class TestNone(unittest.TestCase):
@@ -147,7 +177,7 @@ class TestNone(unittest.TestCase):
             none_string = configini.get('none', 'none', data_type=str)
             none_integer = configini.get('none', 'none', data_type=int)
             none_float = configini.get('none', 'none', data_type=float)
-            none_bool = configini.get('none', 'none', data_type=bool)
+            none_list = configini.get('none', 'none', data_type=list)
 
         cls.config = Config
 
@@ -160,8 +190,8 @@ class TestNone(unittest.TestCase):
     def test_none_float(self):
         self.assertIsNone(self.config.none_float)
 
-    def test_nnone_bool(self):
-        self.assertIsNone(self.config.none_bool)
+    def test_none_list(self):
+        self.assertIsNone(self.config.none_list)
 
 
 if __name__ == '__main__':
