@@ -21,6 +21,7 @@ def get(chapter, key, default=None, data_type=str, environment_var=None):
     :param str environment_var: Overwrites the chapter_key value.
     :return: The value from the configurations value after being parsed.
     """
+
     try:
         value = os.environ.get(environment_var or f"{chapter.upper()}_{key.upper()}") or \
                    __config[chapter.lower()][key.lower()] or \

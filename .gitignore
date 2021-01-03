@@ -1,5 +1,8 @@
 venv
 .idea
+build
+configini.egg-info
+dist
 
 main.py
 config.ini
