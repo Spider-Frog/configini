@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="configini",
-    version="0.3",
+    version="1.0",
     author="SpiderFrog",
     author_email="germanspiderfrog@gmail.com",
     description="Small package to easily parse an .ini file.",
