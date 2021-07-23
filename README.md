@@ -147,7 +147,7 @@ configini.Boolean('chapter', 'key', default=None, environment_var=None)
 
 ### List
 Casts any value to a list.\
-___Note___: Will raise ```json.decoder.JSONDecodeError```, if value is not a valid number, when ```configini.ignore_errors``` is set to False.
+___Note___: Will raise ```json.decoder.JSONDecodeError```, if value is not a valid number, when ```configini.ignore_errors``` is set to False.\
 ___Note___: Method uses ```json.loads``` method to convert string to list, so only use double quotes.
 ```python
 configini.List('chapter', 'key', default=[], environment_var=None)
@@ -155,7 +155,7 @@ configini.List('chapter', 'key', default=[], environment_var=None)
 
 ### Dict
 Casts any value to a list.\
-___Note___: Will raise ```json.decoder.JSONDecodeError```, if value is not a valid number, when ```configini.ignore_errors``` is set to False.
+___Note___: Will raise ```json.decoder.JSONDecodeError```, if value is not a valid number, when ```configini.ignore_errors``` is set to False.\
 ___Note___: Method uses ```json.loads``` method to convert string to list, so only use double quotes.
 ```python
 configini.List('chapter', 'key', default={}, environment_var=None)
